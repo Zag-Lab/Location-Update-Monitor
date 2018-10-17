@@ -6,31 +6,16 @@ import androidx.room.*
 interface LocationDao {
 
     @Insert
-    fun insertAll(locations: List<Location.PersistenceModel>)
+    fun insertAll(locations: List<Location>)
 
     @Update
-    fun update(location: Location.PersistenceModel)
+    fun update(location: Location)
 
     @Delete
-    fun delete(location: Location.PersistenceModel)
+    fun delete(location: Location)
 
     @Query("SELECT * FROM locations")
-    fun getLocations(): List<Location.PersistenceModel>
-
-//    @Query("SELECT * FROM locations WHERE type LIKE :type")
-//    fun getLocationsByType(type: CallbackType): List<Location>
-
-//    @Insert
-//    fun insertAll(locations: List<Location>)
-
-//    @Delete
-//    fun deleteAll()
-
-//    @Query("SELECT * FROM locations")
-//    fun getLocations(): List<Location>
-
-//    @Query("SELECT * FROM locations WHERE type LIKE :requestId")
-//    fun getLocationsForRequestId(requestId: Int): List<Location>
+    fun getLocations(): List<Location>
 }
 
 //@Dao

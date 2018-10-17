@@ -69,7 +69,7 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter("items")
-    fun RecyclerView.setItems(items: List<Location.ViewModel>) {
+    fun RecyclerView.setItems(items: List<LocationViewModel>) {
         val adapter = HistoryAdapter(items)
         this.adapter = adapter
 //        adapter.items = items

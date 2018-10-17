@@ -32,7 +32,7 @@
             android:layout_marginBottom="20dp"
             bind:items="@{vm.locations}"/>
 
-        <LinearLayout
+       <!-- <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -51,7 +51,7 @@
                 android:id="@+id/checkbox_bg_service"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </LinearLayout>
+        </LinearLayout>-->
 
         <!-- TODO: how to color code? what view to use? -->
 

@@ -6,10 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.zaglab.android.locationupdatemonitor.BR
 import io.zaglab.android.locationupdatemonitor.R
-import io.zaglab.android.locationupdatemonitor.data.Location
 import io.zaglab.android.locationupdatemonitor.databinding.ItemLocationHistoryBinding
 
-class HistoryAdapter(var items: List<Location.ViewModel> = emptyList()) : RecyclerView.Adapter<ViewHolder>() {
+class HistoryAdapter(var items: List<LocationViewModel> = emptyList()) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
