@@ -84,9 +84,9 @@ class MainActivity : BaseActivity(),
         return object : LocationCallbackWithRequest(request) {
             override fun onLocationResult(locationResult: LocationResult?) {
                 //todo: persist location
-                locationResult?.let {
-                    //                    Database.storeLocations(mapLocations(it.locations))
-                }
+//                locationResult?.let {
+                //                    Database.storeLocations(mapLocations(it.locations))
+//                }
                 val currentLocation = locationResult?.lastLocation
                 val longitude = currentLocation?.longitude
                 val latitude = currentLocation?.latitude
@@ -104,16 +104,23 @@ class MainActivity : BaseActivity(),
         Intent(this, LocationUpdatesForegroundService::class.java)
     }
 
-    private var locationPendingIntent: PendingIntent? = null
-
-    private fun buildLocationPendingIntent(request: LocationRequest): PendingIntent {
+    private val locationPendingIntent by lazy {
         val intent = Intent(this, LocationUpdatesBroadcastReceiver::class.java)
                 .apply {
                     action = LocationUpdatesBroadcastReceiver.ACTION_PROCESS_UPDATES
-                    putLocationRequest(request)
                 }
-        return PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
+
+    //TODO: pack request details
+//    private fun buildLocationPendingIntent(request: LocationRequest): PendingIntent {
+//        val intent = Intent(this, LocationUpdatesBroadcastReceiver::class.java)
+//                .apply {
+//                    action = LocationUpdatesBroadcastReceiver.ACTION_PROCESS_UPDATES
+//                    putLocationRequest(request)
+//                }
+//        return PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+//    }
 
     private fun Intent.putLocationRequest(request: LocationRequest) {
         putExtra(EXTRA_LOCATION_REQUEST, request)
@@ -162,7 +169,7 @@ class MainActivity : BaseActivity(),
 
     @SuppressWarnings("MissingPermission")
     private fun bgService(request: LocationRequest) {
-        locationPendingIntent = buildLocationPendingIntent(request)
+//        locationPendingIntent = buildLocationPendingIntent(request)
         fusedLocationClient.requestLocationUpdates(request, locationPendingIntent)
     }
 

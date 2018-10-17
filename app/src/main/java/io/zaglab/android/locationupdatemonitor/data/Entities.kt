@@ -7,18 +7,18 @@ import org.threeten.bp.LocalDateTime
 import org.threeten.bp.LocalTime
 
 
-//@Entity(tableName = "locations")
+@Entity(tableName = "locations")
 //todo rename back to Location
-//data class PersistenceModel(
-//        @PrimaryKey(autoGenerate = true)
-//        val id: Int = 0,
-//        val type: CallbackType,
-//        val longitude: Double,
-//        val latitude: Double,
-//        val batched: Boolean,
-//        val date: LocalDate,
-//        val time: LocalTime
-//)
+data class Location(
+        @PrimaryKey(autoGenerate = true)
+        val id: Int = 0,
+        val type: CallbackType,
+        val longitude: Double,
+        val latitude: Double,
+        val batched: Boolean,
+        val date: LocalDate,
+        val time: LocalTime
+)
 
 enum class CallbackType { CALLBACK, FOREGROUND_SERVICE, BACKGROUND_SERVICE }
 

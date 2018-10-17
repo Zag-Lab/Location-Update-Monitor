@@ -5,13 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import io.zaglab.android.locationupdatemonitor.data.persistence.LocationPersistenceModelImpl
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
-import timber.log.Timber
 
-@Database(entities = [Location.PersistenceModel::class/*, Request::class*/], version = 1)
+@Database(entities = [Location::class/*, Request::class*/], version = 1)
 @TypeConverters(Converters::class)
 abstract class Store : RoomDatabase() {
     abstract fun locationDao(): LocationDao

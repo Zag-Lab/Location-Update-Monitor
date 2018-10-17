@@ -6,7 +6,6 @@ import io.zaglab.android.locationupdatemonitor.BR
 import io.zaglab.android.locationupdatemonitor.data.CallbackType
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalTime
-import io.zaglab.android.locationupdatemonitor.interfaces.LocationViewModel as Contract
 
 
 class LocationViewModel(callbackType: CallbackType,
