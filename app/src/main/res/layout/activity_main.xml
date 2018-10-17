@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="io.zaglab.android.locationupdatemonitor.main.RequestBuilderViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="io.zaglab.android.locationupdatemonitor.main.RequestBuilderViewModel.Requester.CallbackType" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:padding="10dp"
+            tools:context=".main.MainActivity">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/label.location_request_builder"
+                android:textSize="20dp" />
+
+            <include
+                android:id="@+id/update_interval"
+                layout="@layout/layout_setting_interval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp"
+                bind:vm="@{vm}" />
+
+            <include
+                android:id="@+id/fastest_update_interval"
+                layout="@layout/layout_setting_fastest_interval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/update_interval"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp"
+                bind:vm="@{vm}" />
+
+            <include
+                android:id="@+id/priority"
+                layout="@layout/layout_setting_priority"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fastest_update_interval"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp"
+                bind:vm="@{vm}" />
+
+            <include
+                android:id="@+id/batching"
+                layout="@layout/layout_setting_batching"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/priority"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp"
+                bind:vm="@{vm}" />
+
+            <include
+                android:id="@+id/batching_frequency"
+                layout="@layout/layout_setting_batching_frequency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/batching"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp"
+                android:visibility="@{vm.batching ? View.VISIBLE : View.GONE}"
+                bind:vm="@{vm}" />
+
+            <TextView
+                android:id="@+id/log"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_above="@+id/notify_type"
+                android:layout_below="@id/batching_frequency"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="#F0F010"
+                android:text="@{vm.log}"
+                bind:scrollable="@{true}" />
+
+
+            <TextView
+                android:id="@+id/notify_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/callback_buttons"
+                android:layout_centerHorizontal="true"
+                android:text="NOTIFIED VIA" />
+
+            <LinearLayout
+                android:id="@+id/callback_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/button_history"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Switch
+                    android:id="@+id/switch_callback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onCheckedChanged="@{(switch, isChecked) -> vm.toggleUpdates(isChecked, CallbackType.CALLBACK)}"
+                    android:text="Callback" />
+
+                <Switch
+                    android:id="@+id/switch_fg_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onCheckedChanged="@{(switch, isChecked) -> vm.toggleUpdates(isChecked, CallbackType.FG_SERVICE)}"
+                    android:text="FG SERVICE" />
+
+                <Switch
+                    android:id="@+id/switch_bg_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onCheckedChanged="@{(switch, isChecked) -> vm.toggleUpdates(isChecked, CallbackType.BG_SERVICE)}"
+                    android:text="BG SERVICE" />
+
+                <!--                <Switch
+                                    android:id="@+id/switch_job"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="JOB" />-->
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:onClick="@{() -> vm.navToHistory()}"
+                android:text="VIEW LOG" />
+
+        </RelativeLayout>
+    </ScrollView>
+</layout>

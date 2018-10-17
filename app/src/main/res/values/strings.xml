@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Location Update Monitor</string>
+    <string name="label.location_request_builder">Location Request Builder</string>
+    <string name="label.update_interval">Update Interval</string>
+    <string name="label.fastest_update_interval">Fastest Update Interval</string>
+    <string name="label.priority">Priority</string>
+    <string name="label.batching">Batching</string>
+    <string name="label.batching_frequency">Batching Frequency</string>
+
+    <array name="priority_types">
+        <item>NO POWER</item>
+        <item>LOW POWER</item>
+        <item>HIGH ACCURACY</item>
+        <item>BALANCED POWER ACCURACY</item>
+    </array>
+
+    <string name="location_settings_inadequate_warning">The location settings on the device are not
+        adequate to run this sample. Fix in Settings.</string>
+
+    <string name="permission_rationale">Location permission is needed for core functionality</string>
+    <string name="permission_denied_explanation">Permission was denied, but is needed for core
+        functionality.</string>
+    <string name="settings">Settings</string>
+
+    <string name="remove_location_updates">Remove location updates</string>
+    <string name="launch_activity">Launch activity</string>
+    <string name="location_updated">Location Updated: %1$s</string>
+
+
+    <string name="unknown_location">Unknown location</string>
+    <plurals name="num_locations_reported">
+        <item quantity="zero">No location reported</item>
+        <item quantity="one">One location reported</item>
+        <item quantity="other">%d locations reported</item>
+    </plurals>
+</resources>
